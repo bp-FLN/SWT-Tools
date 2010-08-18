@@ -1,0 +1,6 @@
+*.ods
+*.class
+build
+dist
+*private*
+*.log*
