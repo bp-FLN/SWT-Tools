@@ -24,15 +24,18 @@ public class TextProgressBar extends Composite {
 		bar = new ProgressBar(this, style);
 		bar.addPaintListener(new PaintListener() {
 
+			@Override
 			public void paintControl(PaintEvent e) {
 				Point point = bar.getSize();
-
+				
 				e.gc.setFont(getFont());
 				e.gc.setForeground(getForeground());
 				FontMetrics fontMetrics = e.gc.getFontMetrics();
 				int stringHeight = fontMetrics.getHeight();
-				if (!showText || text.isEmpty()) {
+				if(!showText){
 					text = String.valueOf(bar.getSelection());
+				}else {
+					text = text.replace("%%", String.valueOf(bar.getSelection()));
 				}
 				e.gc.drawString(text, (point.x - getStringWidth(text, fontMetrics)) / 2, (point.y - stringHeight) / 2, true);
 			}

@@ -11,7 +11,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -44,7 +43,7 @@ class ProgressDialog extends Dialog {
 
 	public void setProgress(int val) {
 		if (!shell.isDisposed()) {
-			progressBar.setText(val+"%");
+			progressBar.setText("%% %");
 			progressBar.setSelection(val);
 		}
 	}
