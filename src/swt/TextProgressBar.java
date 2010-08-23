@@ -61,6 +61,7 @@ public class TextProgressBar extends Composite {
 	 */
 	public void setText(String text) {
 		this.text = text;
+		bar.redraw();
 	}
 
 	/**
@@ -97,6 +98,7 @@ public class TextProgressBar extends Composite {
 	 */
 	public void setSelection(int selection) {
 		bar.setSelection(selection);
+		bar.redraw();
 	}
 
 	/**
