@@ -100,9 +100,15 @@ public class GuiTools {
 		showMessage(shell, "Information", msg, SWT.ICON_INFORMATION | SWT.OK);
 	}
 
-	public static void showExceptionDialog(Shell shell, Exception ex) {
-		ExceptionDialog dlg = new ExceptionDialog(shell);
-		dlg.setException(ex);
-		dlg.open();
+	public static void showExceptionDialog(final Shell shell, final Exception ex) {
+		shell.getDisplay().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				ExceptionDialog dlg = new ExceptionDialog(shell);
+				dlg.setException(ex);
+				dlg.open();
+			}
+		});
 	}
 }

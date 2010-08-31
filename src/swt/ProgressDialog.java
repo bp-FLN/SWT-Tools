@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
  * a status label and a cancel button.
  * @author FLN
  */
-class ProgressDialog extends Dialog {
+public class ProgressDialog extends Dialog {
 
 	private Display display;
 	private Shell shell;
@@ -26,6 +26,9 @@ class ProgressDialog extends Dialog {
 	private Label statusLabel;
 	private int flags;
 	private String title;
+	public static final int NONE = 1 << 1;
+	public static final int INDETERMINATE = 1 << 2;
+	public static final int NOCANCEL = 1 << 3;
 
 	ProgressDialog(Shell shell, int flags, String title) {
 		super(shell, SWT.NONE);
@@ -73,7 +76,7 @@ class ProgressDialog extends Dialog {
 		gridData.verticalIndent = 5;
 		statusLabel.setLayoutData(gridData);
 
-		int style = (flags & SWT.INDETERMINATE) != 0 ? SWT.INDETERMINATE : SWT.NONE;
+		int style = (flags & INDETERMINATE) != 0 ? SWT.INDETERMINATE : SWT.NONE;
 		progressBar = new TextProgressBar(shell, style);
 		progressBar.setShowText(true);
 		gridData = new GridData();
@@ -89,8 +92,7 @@ class ProgressDialog extends Dialog {
 		gridData.verticalIndent = 5;
 		cancelButton.setLayoutData(gridData);
 		cancelButton.setText("Cancel");
-		boolean canCancel = (flags & SWT.CANCEL) != 0 ? true : false;
-		if (canCancel) {
+		if ((flags & NOCANCEL) == 0) {
 			cancelButton.addSelectionListener(new SelectionAdapter() {
 
 				@Override

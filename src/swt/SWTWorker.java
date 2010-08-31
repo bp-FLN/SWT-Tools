@@ -40,7 +40,7 @@ public abstract class SWTWorker<T, V> implements RunnableFuture<T> {
 	/* maximum worker threads in queue */
 	private static final int MAX_WORKER_THREADS = 10;
 	/* maximum worker threads running concurrently */
-	private static final int MAX_CONCURRENT_WORKER_THREADS = 5;
+	private static final int MAX_CONCURRENT_WORKER_THREADS = 1;
 	//	private static Logger log = LoggerFactory.getLogger(SWTWorker.class);
 
 	public SWTWorker() {
